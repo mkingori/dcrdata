@@ -93,7 +93,6 @@
 					<a class="menu-item" data-keynav-skip href="/proposals" title="Proposals">Proposals</a>
 					<a class="menu-item" data-keynav-skip href="/market" title="Market">Market</a>
 					<a class="menu-item" data-keynav-skip href="/attack-cost" title="Decred Attack Cost">Attack Cost</a>
-					<a class="menu-item" data-keynav-skip href="/visualblocks" title="Visual Blocks">Visual Blocks</a>
 					<a class="menu-item" data-keynav-skip href="/parameters" title="Chain Parameters">Parameters</a>
 					<a class="menu-item" data-keynav-skip href="/address/{{.DevAddress}}?txntype=merged_debit" title="Decred Treasury">Treasury</a>
 					<a class="menu-item" data-keynav-skip href="/decodetx" title="Decode or send a raw transaction">Decode/Broadcast Tx</a>
@@ -345,6 +344,10 @@
 			<a class="d-inline-block position-relative mr-4 py-2 unstyled-link" href="/blocks">
 				<span class="px-2{{if eq .TimeGrouping "Blocks"}} unstyled-link{{else}} text-secondary{{end}}">Blocks</span>
 				<div class="blocks-selector{{if eq .TimeGrouping "Blocks"}} active{{end}}"></div>
+			</a>
+			<a class="d-inline-block position-relative mr-4 py-2 unstyled-link" href="/visualblocks">
+				<span class="px-2{{if eq .TimeGrouping "Visualization"}} unstyled-link{{else}} text-secondary{{end}}">Visualization</span>
+				<div class="blocks-selector{{if eq .TimeGrouping "Visualization"}} active{{end}}"></div>
 			</a>
 			<a class="d-inline-block position-relative mr-4 py-2 unstyled-link" href="/ticketpricewindows">
 				<span class="separator pl-2 pr-5{{if eq .TimeGrouping "Windows"}} unstyled-link{{else}} text-secondary{{end}}">Windows</span>

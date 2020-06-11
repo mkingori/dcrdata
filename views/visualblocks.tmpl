@@ -2,8 +2,9 @@
 <!DOCTYPE html>
 <html lang="en">
 {{ template "html-head" "Decred Block Explorer by dcrdata.org"}}
-    {{ template "navbar" . }}
-
+    <!--{{ template "navbar" . }} -->
+    {{template "navbar" . }}
+    {{template "blocksBanner" .}}
     <div
         id="mainContainer"
         class="container py-1"
