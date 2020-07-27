@@ -2400,3 +2400,27 @@ func (exp *explorerUI) AttackCost(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	io.WriteString(w, str)
 }
+
+// StakingCalculator is the page handler for the "/stakingcalculator" path
+func (exp *explorerUI) StakingCalculator(w http.ResponseWriter, r *http.Request) {
+
+	homeInfo := exp.pageData.HomeInfo
+
+	str, err := exp.templates.execTemplateToString("stakingcalculator", struct {
+		*CommonPageData
+		Info *types.HomeInfo
+	}{
+		CommonPageData: exp.commonData(r),
+		Info:           homeInfo,
+	})
+
+	if err != nil {
+		log.Errorf("Template execute failure: %v", err)
+		exp.StatusPage(w, defaultErrorCode, defaultErrorMessage, "", ExpStatusError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "text/html")
+	w.WriteHeader(http.StatusOK)
+	io.WriteString(w, str)
+}
