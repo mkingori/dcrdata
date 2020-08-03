@@ -4,14 +4,65 @@
 {{ template "html-head" printf "Staking Calculator"}}
   {{template "navbar" . }}
   <div class="container main" data-controller="stakingcalculator">
+    <div class="pb-2 h4">Staking Calculator</div>
+    <div class="row mx-0 my-2 bg-white">
+        <div class="col-24 col-sm-12 col-md-24 col-lg-13 px-3 position-relative pt-3 pb-3">
+          <div class="pl-1">
+            <span class="h6 d-inline-block pl-2 font-weight-bold">Current Mainnet Parameters</span>
+          </div>
+          <div class="row">
+            <div class="col-24 col-md-12 col-lg-24 col-xl-14 row pb-2 pb-sm-3 pt-2 pt-md-0 pt-lg-2 pt-xl-0">
+              <div class="col-11 text-center">
+                <div class="d-inline-block text-center text-md-left text-lg-center text-xl-left">
+                  <span class="text-secondary fs13">Current Ticket Price</span>
+                  <br>
+                  <span class="h4" data-target="stakingcalculator.currentTicketPrice">{{.Info.StakeDiff}}</span>
+                </div>
+              </div>
+
+              <div class="col-13 text-center">
+                <div class="d-inline-block text-center text-md-left text-lg-center text-xl-left">
+                  <span class="text-secondary fs13">Staking Reward per Year</span>
+                  <br>
+                  <span class="h4" data-target="stakingcalculator.asr">{{.ASR}}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-24 col-md-12 col-lg-24 col-xl-11 row pb-3 pt-2 pt-md-0 pt-lg-2 pt-xl-0">
+              <div class="col-10 text-center">
+                <div class="d-inline-block text-center text-md-left text-lg-center text-xl-left">
+                  <span class="text-secondary fs13">Blocks per Year</span>
+                  <br>
+                  <span class="h4" data-target="stakingcalculator.blocksperyear">{{.BlocksPerYear}}</span>
+                </div>
+              </div>
+
+              <div class="col-12 text-center">
+                <div class="d-inline-block text-center text-md-left text-lg-center text-xl-left">
+                  <span class="text-secondary fs13">Sim Block</span>
+                  <br>
+                  <span class="h4" data-target="stakingcalculator.simblock">{{.SimBlock}}</span>
+                  <span class="text-secondary">DCR</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     <span class="text-secondary fs13">From:</span>
     <input data-target="stakingcalculator.startDate" type="date" min="2020-07-22">
     <span class="text-secondary fs13">To:</span>
     <input data-target="stakingcalculator.endDate" type="date" min="2020-07-22">
     <button data-action="click->stakingcalculator#computeStake">Calculate</button>
     <span data-target="stakingcalculator.output"></span><br><br>
-    <span data-target="stakingcalculator.currentTicketPrice">Current ticket price: {{.Info.StakeDiff}}</span>
-</div>
+    <span data-target="stakingcalculator.currentTicketPrice">Current ticket price: {{.Info.StakeDiff}}</span><br><br>
+    <span data-target="stakingcalculator.asr">Staking Reward per year: {{.ASR}}</span><br><br>
+    <span data-target="stakingcalculator.blocksperyear">Blocks per year: {{.BlocksPerYear}}</span><br><br>
+    <span data-target="stakingcalculator.simblock">Sim Block: {{.SimBlock}}</span><br><br>
+    <span data-target="stakingcalculator.currentblocknum">Current Block Number: {{.CurrentBlockNum}}</span><br><br>
+    <span data-target="stakingcalculator.simulationreward">Simulation reward: {{.SimulationReward}}</span>
+  </div>
 {{ template "footer" . }}
 </body>
 </html>
