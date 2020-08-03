@@ -2426,12 +2426,47 @@ func (exp *explorerUI) StakingCalculator(w http.ResponseWriter, r *http.Request)
 
 	homeInfo := exp.pageData.HomeInfo
 
+	blockHeight := float64(exp.pageData.BlockInfo.Height)
+	supply := float64(exp.pageData.HomeInfo.CoinSupply)
+	stakePerc := exp.pageData.HomeInfo.PoolInfo.Value / dcrutil.Amount(exp.pageData.HomeInfo.CoinSupply).ToCoin()
+
+	fmt.Printf("Stake Diff: %v\n", exp.pageData.HomeInfo.StakeDiff)
+	fmt.Printf("blockHeight: %v/n", blockHeight)
+	fmt.Printf("supply: %v\n", supply)
+	fmt.Printf("stakePerc: %v\n", stakePerc)
+
+	// StartingDCRBalance float64, IntegerTicketQty bool,
+	// CurrentStakePercent float64, ActualCoinbase float64, CurrentBlockNum float64,
+	// ActualTicketPrice float64
+
+	simParams := exp.simulateStakingReturns(1000, false, stakePerc,
+		dcrutil.Amount(supply).ToCoin(), blockHeight, exp.pageData.HomeInfo.StakeDiff)
+
+	asr := simParams.ASR
+	returnTbale := simParams.ReturnTable
+	blocksPerYear := simParams.BlocksPerYear
+	simBlock := simParams.SimBlock
+	currentBlockNum := simParams.CurrentBlockNum
+	simulationReward := simParams.SimulationReward
+
 	str, err := exp.templates.execTemplateToString("stakingcalculator", struct {
 		*CommonPageData
-		Info *types.HomeInfo
+		Info             *types.HomeInfo
+		ASR              float64
+		ReturnTable      string
+		BlocksPerYear    float64
+		SimBlock         float64
+		CurrentBlockNum  float64
+		SimulationReward float64
 	}{
-		CommonPageData: exp.commonData(r),
-		Info:           homeInfo,
+		CommonPageData:   exp.commonData(r),
+		Info:             homeInfo,
+		ASR:              asr,
+		ReturnTable:      returnTbale,
+		BlocksPerYear:    blocksPerYear,
+		SimBlock:         simBlock,
+		CurrentBlockNum:  currentBlockNum,
+		SimulationReward: simulationReward,
 	})
 
 	if err != nil {
