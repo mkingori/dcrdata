@@ -5,11 +5,16 @@ import { Controller } from 'stimulus'
 export default class extends Controller {
   static get targets () {
     return [
+<<<<<<< HEAD
       'endDate', 'output', 'currentTicketPrice', 'asr', 'blocksperyear', 'simblock', 'currentblocknum', 'simulationreward'
+=======
+      'startDate', 'endDate', 'output'
+>>>>>>> 07727f872314cc565069f4d4861e556426d057d6
     ]
   }
 
   computeStake (e) {
+<<<<<<< HEAD
     var newDate = new Date(this.endDateTarget.value)
     var currentDate = Date.now()
 
@@ -24,5 +29,8 @@ export default class extends Controller {
     console.log(`simblockTarget: ${this.simblockTarget}`)
     console.log(`currentblocknumTarget: ${this.currentblocknumTarget}`)
     console.log(`simulationrewardTarget": ${this.simulationrewardTarget}`)
+=======
+    this.outputTarget.textContent = `From: ${this.startDateTarget.value}, To: ${this.endDateTarget.value}`
+>>>>>>> 07727f872314cc565069f4d4861e556426d057d6
   }
 }
