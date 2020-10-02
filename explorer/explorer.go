@@ -887,6 +887,7 @@ func (exp *explorerUI) simulateStakingReturns(StartingDCRBalance float64, Intege
 		TicketPrice, StakeRewardAtBlock(simblock))
 
 	for simblock < (BlocksPerYear + CurrentBlockNum) {
+		fmt.Println("simblock < (BlocksPerYear + CurrentBlockNum)")
 		// Simulate a Purchase on simblock
 		TicketPrice = TheoreticalTicketPrice(simblock) * TicketAdjustmentFactor
 
